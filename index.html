@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Día Nacional en Café - COHORSIL</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+
+    // 🔹 Configuración Firebase
+    const firebaseConfig = {
+  apiKey: "AIzaSyB_TWv7VSdPJfWCh7BVhNZ533OagDaLlT8",
+  authDomain: "subasta-cohorsil.firebaseapp.com",
+  projectId: "subasta-cohorsil",
+  storageBucket: "subasta-cohorsil.firebasestorage.app",
+  messagingSenderId: "999949946540",
+  appId: "1:999949946540:web:b4d245e9e8b6e69b20d909",
+  measurementId: "G-CT0FHMWNBG"
+};
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function registrar(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
+      const tipo = document.getElementById("tipo").value;
+      const departamento = document.getElementById("departamento").value;
+
+      if (!nombre || !tipo || !departamento) {
+        alert("Por favor complete todos los campos obligatorios.");
+        return;
+      }
+      if (telefono && (!/^[0-9]{8,}$/.test(telefono))) {
+        alert("El teléfono debe tener al menos 8 dígitos.");
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, "participantes"), {
+          nombre, telefono, tipo, departamento, fecha: new Date().toISOString()
+        });
+
+        document.getElementById("formRegistro").classList.add("hidden");
+        document.getElementById("mensajeConfirmacion").classList.remove("hidden");
+        document.getElementById("nombreConfirmacion").innerText = nombre;
+      } catch (error) {
+        console.error("Error registrando: ", error);
+        alert("❌ Hubo un error, intenta de nuevo");
+      }
+    }
+
+    window.registrar = registrar;
+
+    // Animaciones suaves al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      const elements = document.querySelectorAll('.animate-on-load');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('animate-fade-in');
+        }, index * 200);
+      });
+    });
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    .animate-on-load {
+      opacity: 0;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .coffee-gradient {
+      background: linear-gradient(135deg, #e0626d 0%, #d21e1e 25%, #228B22 50%, #32CD32 75%, #90EE90 100%);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 min-h-screen">
+
+  <!-- Hero Section con fondo sólido creativo -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-green-800 via-green-700 to-emerald-600">
+    
+    <!-- Elementos decorativos creativos -->
+    <div class="absolute inset-0">
+      <!-- Círculos decorativos -->
+      <div class="absolute top-20 left-10 w-32 h-32 bg-white bg-opacity-10 rounded-full animate-pulse"></div>
+      <div class="absolute top-40 right-16 w-24 h-24 bg-yellow-300 bg-opacity-20 rounded-full animate-bounce"></div>
+      <div class="absolute bottom-20 left-20 w-40 h-40 bg-green-300 bg-opacity-15 rounded-full animate-pulse"></div>
+      <div class="absolute bottom-32 right-10 w-28 h-28 bg-amber-400 bg-opacity-20 rounded-full animate-bounce"></div>
+      
+      <!-- Formas geométricas -->
+      <div class="absolute top-32 left-1/4 w-16 h-16 bg-yellow-400 bg-opacity-25 transform rotate-45" style="animation: spin 8s linear infinite;"></div>
+      <div class="absolute bottom-40 right-1/4 w-20 h-20 bg-green-400 bg-opacity-20 transform rotate-12 animate-pulse"></div>
+    </div>
+    
+    <!-- Contenido del hero -->
+    <div class="relative z-10 text-center py-20 px-4">
+      <div class="animate-on-load">
+        <div class="animate-float mb-13" style="max-width: 300px; margin: 0 auto;">
+          <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Flogo%20letras%20negras%20(4).png?alt=media&token=26339e1f-4c19-45c5-87dd-62d729075d19" 
+                 alt="Cohorsil"   class=" object-contain filter hover:brightness-110">
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl">
+          Día Nacional del Café
+        </h1>
+        <p class="text-xl md:text-2xl text-amber-100 mb-2 font-medium drop-shadow-lg">
+          COHORSIL presenta
+        </p>
+        <p class="text-lg md:text-xl text-white mb-8 drop-shadow-lg">
+          🌱 Conoce el futuro de la caficultura hondureña 🌱
+        </p>
+      </div>
+      
+      <!-- Información del evento con diseño atractivo -->
+      <div class="animate-on-load max-w-2xl mx-auto">
+        <div class="bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-white border-opacity-20">
+          <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-green-800">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">📍</span>
+              <div class="text-left">
+                <p class="font-bold text-lg">Finca CICAM COHORSIL</p>
+                <p class="text-sm text-green-600">Centro de Innovación</p>
+              </div>
+            </div>
+            <div class="hidden md:block w-px h-12 bg-green-300"></div>
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">📅</span>
+              <div class="text-left">
+                <p class="font-bold text-lg">24 de Septiembre 2025</p>
+                <p class="text-sm text-green-600">9:00 AM - Entrada libre</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de registro -->
+  <section class="py-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        
+        <!-- Información del evento -->
+        <div class="animate-on-load">
+          <h2 class="text-4xl font-bold text-green-800 mb-6">
+            🌱 Una experiencia única
+          </h2>
+          <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+            Únete a nosotros en este evento especial donde descubrirás las últimas innovaciones 
+            en tecnología cafetalera, conocerás a expertos del sector y formarás parte de la 
+            comunidad que está transformando la caficultura hondureña.
+          </p>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <span class="text-xl">🖥</span>
+              <div>
+                <h3 class="font-semibold text-green-700">Tecnología de vanguardia</h3>
+                <p class="text-gray-600">Conoce las últimas innovaciones para el cultivo del café</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl">👥</span>
+              <div>
+                <h3 class="font-semibold text-green-700">Networking profesional</h3>
+                <p class="text-gray-600">Conecta con productores, agrónomos y empresarios</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl">🎯</span>
+              <div>
+                <h3 class="font-semibold text-green-700">Demostraciones prácticas</h3>
+                <p class="text-gray-600">Experiencias hands-on en nuestra finca modelo</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formulario de registro -->
+        <div class="animate-on-load">
+          <div class="bg-white shadow-2xl rounded-3xl p-8 border border-green-100">
+            <div class="text-center mb-6">
+              <h2 class="text-3xl font-bold text-green-700 mb-2">📝 Regístrate ahora</h2>
+              <p class="text-gray-600">¡Es gratis y solo toma 2 minutos!</p>
+            </div>
+            
+            <!-- Formulario -->
+            <form id="formRegistro" onsubmit="registrar(event)" class="space-y-5">
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                  <span class="text-red-500">*</span> Nombre completo
+                </label>
+                <input id="nombre" type="text" 
+                       class="w-full border-2 border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200" 
+                       placeholder="Ingresa tu nombre completo"
+                       required>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Teléfono</label>
+                <input id="telefono" type="tel" 
+                       class="w-full border-2 border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200" 
+                       placeholder="Ej: 98765432">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                  <span class="text-red-500">*</span> Soy
+                </label>
+                <select id="tipo" 
+                        class="w-full border-2 border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200" 
+                        required>
+                  <option value="">Seleccione una opción</option>
+                  <option value="Cliente">Cliente</option>
+                  <option value="Agroservicio">Agroservicio</option>
+                  <option value="Empleado">Empleado</option>
+                  <option value="Proveedor">Proveedor</option>
+                  <option value="Otros">Otros</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">
+                  <span class="text-red-500">*</span> Departamento
+                </label>
+                <select id="departamento" 
+                        class="w-full border-2 border-gray-200 p-3 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:outline-none transition-all duration-200" 
+                        required>
+                  <option value="">Seleccione un departamento</option>
+                  <option value="Atlántida">Atlántida</option>
+                  <option value="Colón">Colón</option>
+                  <option value="Comayagua">Comayagua</option>
+                  <option value="Copán">Copán</option>
+                  <option value="Cortés">Cortés</option>
+                  <option value="Choluteca">Choluteca</option>
+                  <option value="El Paraíso">El Paraíso</option>
+                  <option value="Francisco Morazán">Francisco Morazán</option>
+                  <option value="Gracias a Dios">Gracias a Dios</option>
+                  <option value="Intibucá">Intibucá</option>
+                  <option value="Islas de la Bahía">Islas de la Bahía</option>
+                  <option value="La Paz">La Paz</option>
+                  <option value="Lempira">Lempira</option>
+                  <option value="Ocotepeque">Ocotepeque</option>
+                  <option value="Olancho">Olancho</option>
+                  <option value="Santa Bárbara">Santa Bárbara</option>
+                  <option value="Valle">Valle</option>
+                  <option value="Yoro">Yoro</option>
+                </select>
+              </div>
+              
+              <button type="submit" 
+                      class="w-full coffee-gradient text-white py-4 rounded-xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                🚀 Confirmar mi registro
+              </button>
+            </form>
+
+            <!-- Mensaje de confirmación -->
+            <div id="mensajeConfirmacion" class="hidden text-center py-8">
+              <div class="mb-4">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span class="text-4xl">✅</span>
+                </div>
+                <h3 class="text-3xl font-bold text-green-700 mb-2">¡Registro exitoso!</h3>
+                <p class="text-lg text-gray-700 mb-2">
+                  Gracias <span id="nombreConfirmacion" class="font-bold text-green-600"></span> por registrarte.
+                </p>
+                <p class="text-green-600">¡Te esperamos en el evento! 🌿</p>
+              </div>
+              <div class="bg-green-50 border border-green-200 rounded-xl p-4">
+                <p class="text-sm text-green-700">
+                  <strong>Próximo paso:</strong> Recibirás confirmación y detalles adicionales pronto.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marcas participantes -->
+  <section class="py-16 px-4 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="animate-on-load text-center mb-12">
+        <h2 class="text-4xl font-bold text-green-800 mb-4">🤝 Marcas aliadas</h2>
+        <p class="text-xl text-gray-600">Empresas líderes que hacen posible este evento</p>
+      </div>
+      
+      <div class="bg-white rounded-3xl shadow-xl p-8 border border-green-100">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+          
+          <!-- Cohorsil -->
+          <div class="flex justify-center animate-on-load hover:scale-110 transition-transform duration-300">
+            <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Fcohorsillogo.png?alt=media&token=3cec1586-e6d7-4410-92a2-aa1c03d82c52" 
+                 alt="Cohorsil" class="h-16 object-contain filter hover:brightness-110">
+          </div>
+
+          <!-- Syngenta -->
+          <div class="flex justify-center animate-on-load hover:scale-110 transition-transform duration-300">
+            <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Fsyngenta-vector-logo.png?alt=media&token=07634764-c791-472b-b4a7-433bcb7bc3af" 
+                 alt="Syngenta" class="h-14 object-contain filter hover:brightness-110">
+          </div>
+
+          <!-- Bayer -->
+          <div class="flex justify-center animate-on-load hover:scale-110 transition-transform duration-300">
+            <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2FBayer-Logo.png?alt=media&token=d586b77e-391a-4c05-8f85-d794faeea6f3" 
+                 alt="Bayer" class="h-14 object-contain filter hover:brightness-110">
+          </div>
+
+          <!-- Albion -->
+          <div class="flex justify-center animate-on-load hover:scale-110 transition-transform duration-300">
+            <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Falbion-minerals-logo-vector.png?alt=media&token=9cc80e09-cfc9-4458-b700-f5fd4dc78382" 
+                 alt="Albion" class="h-14 object-contain filter hover:brightness-110">
+          </div>
+
+          <!-- Promoagro -->
+          <div class="flex justify-center animate-on-load hover:scale-110 transition-transform duration-300">
+            <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Fpromoagro.jpg?alt=media&token=d2cd6527-7554-4659-8d8d-3fbe8dcc8fe8" 
+                 alt="Promoagro" class="h-14 object-contain filter hover:brightness-110">
+          </div>
+
+          <!-- Seracsa -->
+          <div class="flex justify-center animate-on-load hover:scale-110 transition-transform duration-300">
+            <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Fseracsa.png?alt=media&token=32c4aa79-8b6d-4dab-9d20-9fa5347f08ce" 
+                 alt="Seracsa" class="h-14 object-contain filter hover:brightness-110">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de imagen promocional -->
+  <section class="py-8 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="animate-on-load text-center mb-8">
+        <h2 class="text-3xl font-bold text-green-800 mb-2">📸 Material promocional</h2>
+        <p class="text-gray-600">¡Comparte esta información con tus contactos!</p>
+      </div>
+      <div class="animate-on-load">
+        <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl shadow-2xl p-6 border border-green-100">
+          <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Fimagen%20promocional.jpeg?alt=media&token=0fce56fa-e403-475e-aabb-b11b2335a355" 
+               alt="Promoción Día Nacional del Café" 
+               class="w-full h-auto rounded-2xl shadow-lg">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="coffee-gradient text-white text-center py-8">
+    <div class="max-w-4xl mx-auto px-4">
+      <p class="text-lg font-medium mb-2">© 2025 COHORSIL</p>
+      <p class="text-green-100">Innovando el futuro de la caficultura hondureña</p>
+    </div>
+  </footer>
+
+</body>
+</html>
