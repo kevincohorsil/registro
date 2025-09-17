@@ -6,7 +6,7 @@
   <title>Día Nacional en Café - COHORSIL</title>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
-    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
 
     // 🔹 Configuración Firebase
     const firebaseConfig = {
@@ -30,26 +30,68 @@
       const tipo = document.getElementById("tipo").value;
       const departamento = document.getElementById("departamento").value;
 
+      const alertBox = document.getElementById("alertBox");
+      const alertMessage = document.getElementById("alertMessage");
+      const submitButton = e.target.querySelector("button[type='submit']");
+
+      const showAlert = (message, type = "error") => {
+        alertBox.classList.remove("hidden", "bg-green-100", "bg-red-100");
+        alertBox.classList.add(type === "success" ? "bg-green-100" : "bg-red-100");
+        alertMessage.textContent = message;
+        setTimeout(() => {
+          alertBox.classList.add("hidden");
+        }, 5000);
+      };
+
       if (!nombre || !tipo || !departamento) {
-        alert("Por favor complete todos los campos obligatorios.");
+        showAlert("Por favor complete todos los campos obligatorios.");
         return;
       }
       if (telefono && (!/^[0-9]{8,}$/.test(telefono))) {
-        alert("El teléfono debe tener al menos 8 dígitos.");
+        showAlert("El teléfono debe tener al menos 8 dígitos.");
         return;
       }
 
+      // Deshabilitar el botón para evitar múltiples envíos
+      submitButton.disabled = true;
+      submitButton.classList.add("opacity-50", "cursor-not-allowed");
+
       try {
-        await addDoc(collection(db, "participantes"), {
-          nombre, telefono, tipo, departamento, fecha: new Date().toISOString()
+        const participantesRef = collection(db, "participantes");
+        const querySnapshot = await getDocs(participantesRef);
+
+        let existe = false;
+        querySnapshot.forEach((doc) => {
+          const data = doc.data();
+          if (data.telefono === telefono || data.nombre === nombre) {
+            existe = true;
+          }
+        });
+
+        if (existe) {
+          showAlert("El número de teléfono o el nombre ya están registrados.");
+          submitButton.disabled = false;
+          submitButton.classList.remove("opacity-50", "cursor-not-allowed");
+          return;
+        }
+
+        await addDoc(participantesRef, {
+          nombre,
+          telefono,
+          tipo,
+          departamento,
+          fecha: new Date().toISOString(),
         });
 
         document.getElementById("formRegistro").classList.add("hidden");
         document.getElementById("mensajeConfirmacion").classList.remove("hidden");
         document.getElementById("nombreConfirmacion").innerText = nombre;
+        showAlert("¡Registro exitoso!", "success");
       } catch (error) {
         console.error("Error registrando: ", error);
-        alert("❌ Hubo un error, intenta de nuevo");
+        showAlert("❌ Hubo un error, intenta de nuevo");
+        submitButton.disabled = false;
+        submitButton.classList.remove("opacity-50", "cursor-not-allowed");
       }
     }
 
@@ -63,6 +105,15 @@
           el.classList.add('animate-fade-in');
         }, index * 200);
       });
+
+      // Agregar contenedor de alertas dinámicas
+      const alertContainer = document.createElement("div");
+      alertContainer.innerHTML = `
+        <div id="alertBox" class="hidden fixed top-5 right-5 p-4 rounded-lg shadow-lg text-sm">
+          <span id="alertMessage" class="font-medium"></span>
+        </div>
+      `;
+      document.body.appendChild(alertContainer);
     });
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
