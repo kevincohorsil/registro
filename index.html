@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Día Nacional en Café - COHORSIL</title>
+  <title>Día de Campo en Viveros - COHORSIL</title>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js";
     import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js";
@@ -57,7 +57,7 @@
       submitButton.classList.add("opacity-50", "cursor-not-allowed");
 
       try {
-        const participantesRef = collection(db, "participantes");
+        const participantesRef = collection(db, "Viveros2025");
         const querySnapshot = await getDocs(participantesRef);
 
         let existe = false;
@@ -135,27 +135,27 @@
     .animate-float {
       animation: float 3s ease-in-out infinite;
     }
-    .coffee-gradient {
-      background: linear-gradient(135deg, #e0626d 0%, #d21e1e 25%, #228B22 50%, #32CD32 75%, #90EE90 100%);
+    .vivero-gradient {
+      background: linear-gradient(135deg, #90EE90 0%, #32CD32 25%, #228B22 50%, #006400 75%, #2F4F2F 100%);
     }
   </style>
 </head>
 <body class="bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 min-h-screen">
 
   <!-- Hero Section con fondo sólido creativo -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-green-800 via-green-700 to-emerald-600">
+  <section class="relative overflow-hidden bg-gradient-to-br from-blue-800 via-blue-700 to-blue-600">
     
     <!-- Elementos decorativos creativos -->
     <div class="absolute inset-0">
       <!-- Círculos decorativos -->
       <div class="absolute top-20 left-10 w-32 h-32 bg-white bg-opacity-10 rounded-full animate-pulse"></div>
-      <div class="absolute top-40 right-16 w-24 h-24 bg-yellow-300 bg-opacity-20 rounded-full animate-bounce"></div>
-      <div class="absolute bottom-20 left-20 w-40 h-40 bg-green-300 bg-opacity-15 rounded-full animate-pulse"></div>
-      <div class="absolute bottom-32 right-10 w-28 h-28 bg-amber-400 bg-opacity-20 rounded-full animate-bounce"></div>
+      <div class="absolute top-40 right-16 w-24 h-24 bg-blue-300 bg-opacity-20 rounded-full animate-bounce"></div>
+      <div class="absolute bottom-20 left-20 w-40 h-40 bg-blue-300 bg-opacity-15 rounded-full animate-pulse"></div>
+      <div class="absolute bottom-32 right-10 w-28 h-28 bg-blue-400 bg-opacity-20 rounded-full animate-bounce"></div>
       
       <!-- Formas geométricas -->
-      <div class="absolute top-32 left-1/4 w-16 h-16 bg-yellow-400 bg-opacity-25 transform rotate-45" style="animation: spin 8s linear infinite;"></div>
-      <div class="absolute bottom-40 right-1/4 w-20 h-20 bg-green-400 bg-opacity-20 transform rotate-12 animate-pulse"></div>
+      <div class="absolute top-32 left-1/4 w-16 h-16 bg-blue-400 bg-opacity-25 transform rotate-45" style="animation: spin 8s linear infinite;"></div>
+      <div class="absolute bottom-40 right-1/4 w-20 h-20 bg-blue-400 bg-opacity-20 transform rotate-12 animate-pulse"></div>
     </div>
     
     <!-- Contenido del hero -->
@@ -166,13 +166,13 @@
                  alt="Cohorsil"   class=" object-contain filter hover:brightness-110">
         </div>
         <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-2xl">
-          Día Nacional del Café
+          Día de Campo en Viveros
         </h1>
-        <p class="text-xl md:text-2xl text-amber-100 mb-2 font-medium drop-shadow-lg">
+        <p class="text-xl md:text-2xl text-green-100 mb-2 font-medium drop-shadow-lg">
           COHORSIL presenta
         </p>
         <p class="text-lg md:text-xl text-white mb-8 drop-shadow-lg">
-          🌱 Conoce el futuro de la caficultura hondureña 🌱
+          🌱 Aprende, comparte y fortalece tu experiencia como productor. 🪴
         </p>
       </div>
       
@@ -181,18 +181,17 @@
         <div class="bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl p-6 shadow-2xl border border-white border-opacity-20">
           <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-green-800">
             <div class="flex items-center gap-2">
-              <span class="text-2xl">📍</span>
+              <span class="text-2xl">🏗️</span>
               <div class="text-left">
-                <p class="font-bold text-lg">Finca CICAM COHORSIL</p>
-                <p class="text-sm text-green-600">Centro de Innovación</p>
+                <p class="font-bold text-lg">VIVEROS DE  COHORSIL</p>
               </div>
             </div>
             <div class="hidden md:block w-px h-12 bg-green-300"></div>
             <div class="flex items-center gap-2">
               <span class="text-2xl">📅</span>
               <div class="text-left">
-                <p class="font-bold text-lg">24 de Septiembre 2025</p>
-                <p class="text-sm text-green-600">9:00 AM - Entrada libre</p>
+                <p class="font-bold text-lg">1 de Octubre 2025</p>
+                <p class="text-sm text-green-600">9:00 AM - Tours guiados</p>
               </div>
             </div>
           </div>
@@ -209,34 +208,41 @@
         <!-- Información del evento -->
         <div class="animate-on-load">
           <h2 class="text-4xl font-bold text-green-800 mb-6">
-            🌱 Una experiencia única
+            🌿 Una experiencia práctica única
           </h2>
           <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-            Únete a nosotros en este evento especial donde descubrirás las últimas innovaciones 
-            en tecnología cafetalera, conocerás a expertos del sector y formarás parte de la 
-            comunidad que está transformando la caficultura hondureña.
+            Sumérgete en el mundo de los viveros especializados. Conoce de primera mano las técnicas 
+            más avanzadas de propagación de café, experimenta con sistemas de riego automatizado y 
+            descubre cómo producir plántulas de la más alta calidad para tus plantaciones.
           </p>
           
           <div class="space-y-4">
             <div class="flex items-start gap-3">
-              <span class="text-xl">🖥</span>
+              <span class="text-xl">🔬</span>
               <div>
-                <h3 class="font-semibold text-green-700">Tecnología de vanguardia</h3>
-                <p class="text-gray-600">Conoce las últimas innovaciones para el cultivo del café</p>
+                <h3 class="font-semibold text-green-700">Sistemas de propagación avanzados</h3>
+                <p class="text-gray-600">Técnicas modernas de germinación, bandejas especializadas y sistemas de riego automatizado</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
-              <span class="text-xl">👥</span>
+              <span class="text-xl">🪴</span>
               <div>
-                <h3 class="font-semibold text-green-700">Networking profesional</h3>
-                <p class="text-gray-600">Conecta con productores, agrónomos y empresarios</p>
+                <h3 class="font-semibold text-green-700">Formulaciones nutritivas de vanguardia</h3>
+                <p class="text-gray-600">Mezclas optimizadas de sustratos y programas de fertilización específicos para cada variedad</p>
               </div>
             </div>
             <div class="flex items-start gap-3">
-              <span class="text-xl">🎯</span>
+              <span class="text-xl">🛡️</span>
               <div>
-                <h3 class="font-semibold text-green-700">Demostraciones prácticas</h3>
-                <p class="text-gray-600">Experiencias hands-on en nuestra finca modelo</p>
+                <h3 class="font-semibold text-green-700">Control fitosanitario inteligente</h3>
+                <p class="text-gray-600">Prevención de enfermedades, manejo integrado de plagas y protocolos de calidad</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <span class="text-xl">📈</span>
+              <div>
+                <h3 class="font-semibold text-green-700">Del vivero a tu finca</h3>
+                <p class="text-gray-600">Técnicas escalables para implementar en tu propio vivero y mejorar tus plantaciones</p>
               </div>
             </div>
           </div>
@@ -246,7 +252,7 @@
         <div class="animate-on-load">
           <div class="bg-white shadow-2xl rounded-3xl p-8 border border-green-100">
             <div class="text-center mb-6">
-              <h2 class="text-3xl font-bold text-green-700 mb-2">📝 Regístrate ahora</h2>
+              <h2 class="text-3xl font-bold text-green-700 mb-2">🌱 Reserva tu lugar en el vivero</h2>
               <p class="text-gray-600">¡Es gratis y solo toma 2 minutos!</p>
             </div>
             
@@ -281,6 +287,7 @@
                   <option value="Agroservicio">Agroservicio</option>
                   <option value="Empleado">Empleado</option>
                   <option value="Proveedor">Proveedor</option>
+                  <option value="Estudiante de Agronomía">Estudiante de Agronomía</option>
                   <option value="Otros">Otros</option>
                 </select>
               </div>
@@ -315,7 +322,7 @@
               </div>
               
               <button type="submit" 
-                      class="w-full coffee-gradient text-white py-4 rounded-xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                      class="w-full vivero-gradient text-white py-4 rounded-xl font-bold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
                 🚀 Confirmar mi registro
               </button>
             </form>
@@ -324,17 +331,17 @@
             <div id="mensajeConfirmacion" class="hidden text-center py-8">
               <div class="mb-4">
                 <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span class="text-4xl">✅</span>
+                  <span class="text-4xl">🌱</span>
                 </div>
                 <h3 class="text-3xl font-bold text-green-700 mb-2">¡Registro exitoso!</h3>
                 <p class="text-lg text-gray-700 mb-2">
                   Gracias <span id="nombreConfirmacion" class="font-bold text-green-600"></span> por registrarte.
                 </p>
-                <p class="text-green-600">¡Te esperamos en el evento! 🌿</p>
+                <p class="text-green-600">¡Te esperamos en el vivero! 🪴</p>
               </div>
               <div class="bg-green-50 border border-green-200 rounded-xl p-4">
                 <p class="text-sm text-green-700">
-                  <strong>Próximo paso:</strong> Recibirás confirmación y detalles adicionales pronto.
+                  <strong>Próximo paso:</strong> Prepárate para una experiencia práctica única en nuestras instalaciones especializadas.
                 </p>
               </div>
             </div>
@@ -344,15 +351,67 @@
     </div>
   </section>
 
+  <!-- Sección de actividades del día -->
+  <section class="py-16 px-4 bg-gradient-to-br from-green-50 to-emerald-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="animate-on-load text-center mb-12">
+        <h2 class="text-4xl font-bold text-green-800 mb-4">📋 Agenda del Día</h2>
+        <p class="text-xl text-gray-600">Actividades prácticas que no te puedes perder</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="animate-on-load bg-white rounded-2xl p-6 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300">
+          <div class="text-center mb-4">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="text-2xl">🏗️</span>
+            </div>
+            <h3 class="font-bold text-green-700">Tour por Instalaciones</h3>
+          </div>
+          <p class="text-sm text-gray-600 text-center">Recorrido completo por viveros especializados y áreas de propagación</p>
+        </div>
+
+        <div class="animate-on-load bg-white rounded-2xl p-6 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300">
+          <div class="text-center mb-4">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="text-2xl">🌱</span>
+            </div>
+            <h3 class="font-bold text-green-700">Técnicas de Germinación</h3>
+          </div>
+          <p class="text-sm text-gray-600 text-center">Demostración práctica de métodos de germinación y manejo de semillas</p>
+        </div>
+
+        <div class="animate-on-load bg-white rounded-2xl p-6 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300">
+          <div class="text-center mb-4">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="text-2xl">💧</span>
+            </div>
+            <h3 class="font-bold text-green-700">Sistemas de Riego</h3>
+          </div>
+          <p class="text-sm text-gray-600 text-center">Tecnología de microaspersión y automatización en viveros</p>
+        </div>
+
+        <div class="animate-on-load bg-white rounded-2xl p-6 shadow-xl border border-green-100 hover:shadow-2xl transition-all duration-300">
+          <div class="text-center mb-4">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+              <span class="text-2xl">🔬</span>
+            </div>
+            <h3 class="font-bold text-green-700">Control de Calidad</h3>
+          </div>
+          <p class="text-sm text-gray-600 text-center">Evaluación de plántulas and protocolos de sanidad vegetal</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Marcas participantes -->
-  <section class="py-16 px-4 bg-gray-50">
+  <section class="py-16 px-4 bg-white">
     <div class="max-w-6xl mx-auto">
       <div class="animate-on-load text-center mb-12">
         <h2 class="text-4xl font-bold text-green-800 mb-4">🤝 Marcas aliadas</h2>
         <p class="text-xl text-gray-600">Empresas líderes que hacen posible este evento</p>
       </div>
       
-      <div class="bg-white rounded-3xl shadow-xl p-8 border border-green-100">
+      <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl shadow-xl p-8 border border-green-100">
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
           
           <!-- Cohorsil -->
@@ -396,16 +455,16 @@
   </section>
 
   <!-- Sección de imagen promocional -->
-  <section class="py-8 bg-white">
+  <section class="py-8 bg-gray-50">
     <div class="max-w-4xl mx-auto px-4">
       <div class="animate-on-load text-center mb-8">
         <h2 class="text-3xl font-bold text-green-800 mb-2">📸 Material promocional</h2>
-        <p class="text-gray-600">¡Comparte esta información con tus contactos!</p>
+        <p class="text-gray-600">¡Comparte esta información con otros productores!</p>
       </div>
       <div class="animate-on-load">
         <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-3xl shadow-2xl p-6 border border-green-100">
-          <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2Fimagen%20promocional.jpeg?alt=media&token=0fce56fa-e403-475e-aabb-b11b2335a355" 
-               alt="Promoción Día Nacional del Café" 
+          <img src="https://firebasestorage.googleapis.com/v0/b/subasta-cohorsil.firebasestorage.app/o/logos%2FWhatsApp%20Image%202025-09-25%20at%201.32.39%20PM.jpeg?alt=media&token=b5bec297-a111-4f27-b571-fac526cfbbd6" 
+               alt="Promoción Día de Campo en Viveros" 
                class="w-full h-auto rounded-2xl shadow-lg">
         </div>
       </div>
@@ -413,10 +472,10 @@
   </section>
 
   <!-- Footer -->
-  <footer class="coffee-gradient text-white text-center py-8">
+  <footer class="vivero-gradient text-white text-center py-8">
     <div class="max-w-4xl mx-auto px-4">
       <p class="text-lg font-medium mb-2">© 2025 COHORSIL</p>
-      <p class="text-green-100">Innovando el futuro de la caficultura hondureña</p>
+      <p class="text-green-100">Sembrando el futuro de la caficultura hondureña</p>
     </div>
   </footer>
 
